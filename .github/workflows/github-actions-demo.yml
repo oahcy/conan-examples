@@ -23,4 +23,9 @@ jobs:
         run: python -m pip install conan
       - name: show conan version
         run: conan -v
+      - run: conan search poco --remote=conancenter
+      - run: conan inspect poco/1.9.4
+      - run: mkdir -p ${{ github.workspace }}/libraries/poco/md5/build
+      - run: cd ${{ github.workspace }}/libraries/poco/md5/build && conan install ..
+      - run: ls ${{ github.workspace }}/libraries/poco/md5/build
       - run: echo "🍏 This job's status is ${{ job.status }}."
